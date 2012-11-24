@@ -18,24 +18,39 @@
     <ClCompile Include="Test.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="O:\C\keyvalue.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="key_value_tcp.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="lock_free_queen.c">
+    <ClCompile Include="lock_free_queue.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="file_service_thread.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="keyvalue.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="allocate.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="O:\C\keyvalue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="key_value_tcp.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="lock_free_queen.h">
+    <ClInclude Include="lock_free_queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="file_service_thread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cstlib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="keyvalue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="allocate.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

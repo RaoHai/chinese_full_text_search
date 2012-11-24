@@ -12,23 +12,45 @@ BOOL CAS(struct file_node** reg, struct file_node* oldval,struct file_node* newv
 	}
 	return FALSE;
 }
-void init_queue(struct file_node* new_node)
+struct lock_free_queue* new_lock_free_queue()
 {
-	file_write_queue.front = file_write_queue.tail = new_node;
+	struct lock_free_queue * new_queue; 
+	for(;;)
+	{
+				new_queue= (struct lock_free_queue *)malloc(sizeof(struct lock_free_queue *));
+				if(new_queue)
+				{
+					memset(new_queue,0,sizeof(struct lock_free_queue *));
+					break;
+				}
+	}
+	
+	new_queue->front = new_queue->tail=NULL;
+	return new_queue;
+}
+void init_queue(struct lock_free_queue* queue,struct file_node* new_node)
+{
+
+	queue->front = new_node;
+	queue->tail = new_node;
+
+	//file_write_queue.front = file_write_queue.tail = new_node;
 }
 
-void en_queue(int filepos,char* value)
+void en_queue(struct lock_free_queue* queue,int filepos,void* value)
 {
 	struct file_node* new_node,*p,*oldp;
 	
-	new_node = (struct file_node*)malloc(sizeof(struct file_node*));
+	new_node = (struct file_node*)malloc(sizeof(struct file_node));
+	memset(new_node,0,sizeof(struct file_node));
 	new_node->file_pos = filepos;
 	new_node->value = value;
 	new_node->next = NULL;
-	p = file_write_queue.tail;
+	p = queue->tail;
+
 	if(!p)
 	{
-		init_queue(new_node);
+		init_queue(queue,new_node);
 	}
 	else
 	{
@@ -39,32 +61,35 @@ void en_queue(int filepos,char* value)
 			 while (p->next != NULL)
 			   p = p->next;
 		}while( CAS(&p->next, NULL, new_node) != TRUE); 
-		printf("add to queue:%d:%s\n",filepos,value);
-		CAS(&file_write_queue.tail, oldp, new_node);
-		if(queue_is_empty())file_write_queue.front =file_write_queue.tail;
+		
+		CAS(&queue->tail, oldp, new_node);
+		if(queue_is_empty(queue))queue->front =queue->tail;
 	}
 
 }
-struct file_node* out_queue()
+void* out_queue(struct lock_free_queue* queue)
 {
 	struct file_node* p ;
 	do
 	{
-		p=  file_write_queue.front;
-		if(p->next==NULL)
+		p=  queue->front;
+
+		if(p == NULL)
 			return ERR_EMPTY_QUEUE;
-	}while(CAS(&file_write_queue.front,p,p->next));
-	return p->next;
+	}while(CAS(&queue->front,p,p->next)!=TRUE);
+
+	return p;
 }
-int queue_is_empty()
+int queue_is_empty(struct lock_free_queue* queue)
 {
-	return file_write_queue.front == NULL;
+
+	return queue->front == NULL;
 }
-void trace_queue(){
-	struct file_node *p= file_write_queue.front;
+void trace_queue(struct lock_free_queue* queue){
+	struct file_node *p= queue->front;
 	printf("trace queue:-----------------------\n");
 	printf("queue front:%d:%s\n",p->file_pos,p->value);
-	printf("queue tail:%d:%s\n",file_write_queue.tail->file_pos,file_write_queue.tail->value);
+	printf("queue tail:%d:%s\n",queue->tail->file_pos,queue->tail->value);
 	do
 	{
 		printf("trace queue:%d:%s\n",p->file_pos,p->value);
