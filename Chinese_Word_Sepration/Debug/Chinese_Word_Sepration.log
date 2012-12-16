@@ -1,19 +1,14 @@
-﻿生成启动时间为 2012/10/29 21:09:28。
+﻿生成启动时间为 2012/12/14 9:56:39。
      1>项目“W:\作品\program\Chinese_Word_Sepration\Chinese_Word_Sepration\Chinese_Word_Sepration.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\Chinese_Word_Sepration.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         P:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt lock_free_queen.c
-         lock_free_queen.c
+         所有输出均为最新。
        Link:
-         P:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"W:\作品\program\Chinese_Word_Sepration\Debug\Chinese_Word_Sepration.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Chinese_Word_Sepration.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"W:\作品\program\Chinese_Word_Sepration\Debug\Chinese_Word_Sepration.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"W:\作品\program\Chinese_Word_Sepration\Debug\Chinese_Word_Sepration.lib" /MACHINE:X86 Debug\key_value_tcp.obj
-         Debug\lock_free_queen.obj
-         Debug\keyvalue.obj
-         Debug\Test.obj
-         LINK : 没有找到 W:\作品\program\Chinese_Word_Sepration\Debug\Chinese_Word_Sepration.exe 或上一个增量链接没有生成它；正在执行完全链接
+         所有输出均为最新。
          Chinese_Word_Sepration.vcxproj -> W:\作品\program\Chinese_Word_Sepration\Debug\Chinese_Word_Sepration.exe
        Manifest:
-         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"W:\作品\program\Chinese_Word_Sepration\Debug\Chinese_Word_Sepration.exe;#1" /manifest Debug\Chinese_Word_Sepration.exe.intermediate.manifest
+         所有输出均为最新。
        FinalizeBuildStatus:
          正在删除文件“Debug\Chinese_Word_Sepration.unsuccessfulbuild”。
          正在对“Debug\Chinese_Word_Sepration.lastbuildstate”执行 Touch 任务。
@@ -21,4 +16,4 @@
 
 生成成功。
 
-已用时间 00:00:01.25
+已用时间 00:00:00.17

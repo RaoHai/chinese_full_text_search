@@ -4,7 +4,10 @@
 #include <string.h>
 #include <assert.h>
 #include <process.h>
+
 #include "allocate.c"
+#include "cstlib.h"
+#include "cJSON.h"
 //#include "file_service_thread.h"
 /*
 	简单的key-value存储，占用空间好像有点多。。。
@@ -35,6 +38,7 @@
  *	这么着好像可以偷懒一下
  *  或者之后可以用typeof来坐坐，那type参数就可以不用传了
  */
+
 #define		ALLOC(type,size)	((type)m_ALLOC(size))
 //假装inline一下……
 static inline void* m_ALLOC(size_t n){
@@ -56,7 +60,7 @@ struct __key_value_node
 	char*	key;
 	char*	value;
 };
-
+struct __key_value_node* key_value;
 struct _k_v_pool{
 	struct __key_value_node* pt;//当前的指针
 	struct __key_value_node* k_v;//存储hash表
@@ -65,18 +69,24 @@ struct _k_v_pool{
 
 } *k_v_pool;
 
+
+
 unsigned int hash( char *str);
 
 struct __key_value_node* __key_value_init();
 int __key_value_insert( struct __key_value_node* key_value,const char* key,char * value);
 char* __key_value_get( struct __key_value_node* key_value,const char* key);
 
-void _dump_proc();		 //这是子进程。。
-void __key_value_dump();//从k_v池中dump出来，但是命名还是用的这个吧，这是接口
+void* command_parser(char* command);
+
+void _dump_proc(struct __key_value_node* k_v);		 //这是子进程。。
+void __key_value_dump(struct __key_value_node* k_v);//从k_v池中dump出来，但是命名还是用的这个吧，这是接口
 void __recover(struct __key_value_node*);
+void _dump(FILE*,char*,char*);
+
 /*k_v 池*/
-int _k_v_pool_init();
-struct __key_value_node* get_from_pool( int);
-void _mem_pool_trace();
+//int _k_v_pool_init();
+//struct __key_value_node* get_from_pool( int);
+//void _mem_pool_trace();
 
 #endif /* KV_H_INCLUDED */

@@ -33,6 +33,15 @@
     <ClCompile Include="allocate.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="cstlib.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="except.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cJSON.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="key_value_tcp.h">
@@ -51,6 +60,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="allocate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="except.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cJSON.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

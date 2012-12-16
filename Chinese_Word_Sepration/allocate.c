@@ -1,5 +1,6 @@
 #include "allocate.h"
-
+#ifndef ALLOCATE_C_INCLUDED
+#define ALLOCATE_C_INCLUDED
 
 static void * allocate(size_t n){
 	void* result = malloc(n);
@@ -46,7 +47,7 @@ static void* sub_allocate(size_t n){
 	}
 	
 	my_free_list = free_list + FREELIST_INDEX(n);
-	;
+	
 	result = * my_free_list;
 	if(result == 0){
 		//没有找到可用的free list，准备填充free list
@@ -152,3 +153,5 @@ char* chunk_alloc(size_t size,int * nobjs){
 	}
 
 }
+
+#endif

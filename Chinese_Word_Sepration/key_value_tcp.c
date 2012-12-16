@@ -1,75 +1,104 @@
 #include "key_value_tcp.h"
 
-void _tcp_int_and_listen(int port,void callback(char*)){
-	WORD wVersionRequested;
-    WSADATA wsaData;
-    int ret, nLeft, length;
-    SOCKET sListen, sServer; //侦听套接字，连接套接字
-    struct sockaddr_in saServer, saClient; //地址信息   
-    char *ptr;//用于遍历信息的指针   
-	 
-	char receiveMessage[STR_SIZE];
-	ZeroMemory(receiveMessage,STR_SIZE);
 
-    //WinSock初始化
-    wVersionRequested=MAKEWORD(2, 2); //希望使用的WinSock DLL 的版本
-    ret=WSAStartup(wVersionRequested, &wsaData);
-    if(ret!=0)
-    {
-        printf("WSAStartup() failed!\n");
-        return ;
-    }
-    //创建Socket,使用TCP协议
-    sListen=socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (sListen == INVALID_SOCKET)
-    {
-        WSACleanup();
-        printf("socket() faild!\n");
-        return;
-    }
-    //构建本地地址信息
-    saServer.sin_family = AF_INET; //地址家族
-    saServer.sin_port = htons(port); //注意转化为网络字节序
-    saServer.sin_addr.S_un.S_addr = htonl(INADDR_ANY); //使用INADDR_ANY 指示任意地址
-  
-    //绑定
-    ret = bind(sListen, (struct sockaddr *)&saServer, sizeof(saServer));
-    if (ret == SOCKET_ERROR)
-    {
-        printf("bind() faild! code:%d\n", WSAGetLastError());
-        closesocket(sListen); //关闭套接字
-        WSACleanup();
-        return;
-    }
-  
-    //侦听连接请求
-    ret = listen(sListen, 5);
-    if (ret == SOCKET_ERROR)
-    {
-        printf("listen() faild! code:%d\n", WSAGetLastError());
-        closesocket(sListen); //关闭套接字
-        return;
-    }
-  
-    printf("Waiting for client connecting!\n");
-    printf("Tips: Ctrl+c to quit!\n");
-    //阻塞等待接受客户端连接
-	 while(1)//循环监听客户端，永远不停止，所以，在本项目中，我们没有心跳包。
-	 {
-	  length = sizeof(saClient);
-	  sServer = accept(sListen, (struct sockaddr *)&saClient, &length);
-	  if (sServer == INVALID_SOCKET)
-	  {
-	   printf("accept() faild! code:%d\n", WSAGetLastError());
-	   closesocket(sListen); //关闭套接字
-	   WSACleanup();
-	   return;
-	  }       
+static void echo_read_cb(struct bufferevent *bev, void *ctx)
+{
+	
+		char * line;
+		char* retval;
+		size_t len;
+        /* This callback is invoked when there is data to read on bev. */
+        struct evbuffer *input = bufferevent_get_input(bev);
+        struct evbuffer *output = bufferevent_get_output(bev);
+		struct evbuffer_iovec v[2];
 
+		line = evbuffer_readln(input, &len, EVBUFFER_EOL_CRLF);
+		retval = (char*)command_parser(line);
+		//command_parser(line);
+		evbuffer_reserve_space(output, strlen(retval), v, 2);
+		evbuffer_add(output, retval, strlen(retval));
+		evbuffer_commit_space(output, v, 1);
+		
+		//evbuffer_add_buffer(output, input);
+		
 
-	recv(sServer,receiveMessage,STR_SIZE,0);
-	callback(receiveMessage);
+		//evbuffer_copyout(input, line, buffer_len);
+		
+        /* Copy all the data from the input buffer to the output buffer. */
+		printf("%s\n",line);
+		free(line);    
+}
  
- } 
-return;
+static void echo_event_cb(struct bufferevent *bev, short events, void *ctx)
+{
+        if (events & BEV_EVENT_ERROR)
+                perror("Error from bufferevent");
+        if (events & (BEV_EVENT_EOF | BEV_EVENT_ERROR)) {
+                bufferevent_free(bev);
+        }
+}
+ 
+static void accept_conn_cb(struct evconnlistener *listener,
+    evutil_socket_t fd, struct sockaddr *address, int socklen,
+    void *ctx)
+{
+        /* We got a new connection! Set up a bufferevent for it. */
+        struct event_base *base = evconnlistener_get_base(listener);
+        struct bufferevent *bev = bufferevent_socket_new(
+                base, fd, BEV_OPT_CLOSE_ON_FREE);
+ 
+        bufferevent_setcb(bev, echo_read_cb, NULL, echo_event_cb, NULL);
+        bufferevent_enable(bev, EV_READ|EV_WRITE);
+}
+ 
+static void accept_error_cb(struct evconnlistener *listener, void *ctx)
+{
+        struct event_base *base = evconnlistener_get_base(listener);
+        int err = EVUTIL_SOCKET_ERROR();
+        fprintf(stderr, "Got an error %d (%s) on the listener. "
+                "Shutting down./n", err, evutil_socket_error_to_string(err));
+ 
+        event_base_loopexit(base, NULL);
+}
+
+int tcp_start_up(){
+
+	WSADATA WSAData;
+
+	struct event_base *base;
+    struct evconnlistener *listener;
+    struct sockaddr_in sin;
+
+    int port = 22222;
+	WSAStartup(0x101, &WSAData);
+      
+    base = event_base_new();
+    if (!base) {
+            puts("Couldn't open event base");
+            return 1;
+    }
+
+    /* Clear the sockaddr before using it, in case there are extra
+        * platform-specific fields that can mess us up. */
+    memset(&sin, 0, sizeof(sin));
+    /* This is an INET address */
+    sin.sin_family = AF_INET;
+    /* Listen on 0.0.0.0 */
+    sin.sin_addr.s_addr = htonl(0);
+    /* Listen on the given port. */
+    sin.sin_port = htons(port);
+
+    listener = evconnlistener_new_bind(base, accept_conn_cb, NULL,
+        LEV_OPT_CLOSE_ON_FREE|LEV_OPT_REUSEABLE, -1,
+        (struct sockaddr*)&sin, sizeof(sin));
+    if (!listener) {
+            perror("Couldn't create listener");
+            return 1;
+    }
+
+    evconnlistener_set_error_cb(listener, accept_error_cb);
+	printf("ready to dispatch...\n");
+    event_base_dispatch(base);
+	
+    return 0;
 }

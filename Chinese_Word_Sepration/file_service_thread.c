@@ -76,7 +76,9 @@ int restruct_key_value(){
 		printf("read file failed..\n");
 	}
 	fclose(fp);
+	return 1;
 }
+
 void service_proc()
 {
 	struct file_node* tmp;

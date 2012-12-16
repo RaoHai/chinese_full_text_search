@@ -37,7 +37,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -46,9 +48,13 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
+      <AdditionalIncludeDirectories>W:\作品\program\Chinese_Word_Sepration\Chinese_Word_Sepration\libevent\event2;W:\作品\program\Chinese_Word_Sepration\Chinese_Word_Sepration\libevent;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>W:\作品\program\Chinese_Word_Sepration\Chinese_Word_Sepration\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>advapi32.lib;ws2_32.lib;wsock32.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libc.lib;msvcrt.lib;libcd.lib;libcmtd.lib;msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -68,6 +74,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="allocate.c" />
+    <ClCompile Include="cJSON.c" />
+    <ClCompile Include="cstlib.c" />
+    <ClCompile Include="except.c" />
     <ClCompile Include="file_service_thread.c" />
     <ClCompile Include="keyvalue.c" />
     <ClCompile Include="key_value_tcp.c" />
@@ -76,7 +85,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allocate.h" />
+    <ClInclude Include="cJSON.h" />
     <ClInclude Include="cstlib.h" />
+    <ClInclude Include="except.h" />
     <ClInclude Include="file_service_thread.h" />
     <ClInclude Include="keyvalue.h" />
     <ClInclude Include="key_value_tcp.h" />

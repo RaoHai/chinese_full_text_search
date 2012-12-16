@@ -5,10 +5,11 @@
 #include <process.h>
 //#include <windows.h>
 
+
 #include "cstlib.h"
 #include "key_value_tcp.h"
 #include "keyvalue.h"
-#include "file_service_thread.h"
+
 
 #define SIZE_ARR 1024
 
@@ -36,7 +37,11 @@ char * rand_str(int in_len)
 } 
 void key_value_test();
 
+
+
 int main(){
+	
+
 
 	unsigned pid;
 	int i;
@@ -46,11 +51,21 @@ int main(){
 	int count=0;
 	//char * command = (char*) malloc (SIZE_ARR * sizeof(char*));
 	char * command = (char*)sub_allocate(SIZE_ARR * sizeof(char*));
-	char * word, *tmp;
-	char* result,*key,*value;
-	struct __key_value_node* key_value=__key_value_init();
+	
+
+
+	
 	char* s1,* s2;
 	int error=0;
+	char *out;
+	cJSON *root;
+	root=cJSON_CreateString("hello");
+	out=cJSON_Print(root);
+	printf("%s\n",out);
+
+	key_value=__key_value_init();
+	tcp_start_up();
+	
 	//__key_value_insert(key_value,"Hello","World");
 	//result = __key_value_get(key_value,"Hello");
 	//printf("get key:%s,value:%s\n","Hello",result);
@@ -60,12 +75,15 @@ int main(){
 	//	printf("init successed;\n");
 	
 	/*
-	for(i=0;i<2000000;i++)
+	for(i=0;i<10000;i++)
 	{
 		
-		s1 = rand_str(5);
-		s2 = rand_str(5);
-		
+		//s1 = rand_str(5);
+		//s2 = rand_str(5);
+		s1 = (char*)sub_allocate(10);
+		s2 = (char*)sub_allocate(10);
+		itoa(i,s1,10);
+		itoa(i,s2,10);
 		//printf("creating key:%s,value:%s...\n",s1,s2);
 		__key_value_insert(key_value,s1,s2);
 		 result = __key_value_get(key_value,s1);
@@ -76,36 +94,7 @@ int main(){
 	
 	printf("error count:%d\n",error);
 	// */
-	for(;;){
-		printf(" $>");
-		gets(command);
-		word = strtok(command," ");
-		if(strcmp(L(word),"read")==0)
-		{
-			memset(callback_value,0,sizeof(char*));
-			/*i = atoi(strtok(NULL," "));
-			printf("0x%08x\n",callback_value);
-			read(i,callback_value);*/
-			tmp = strtok(NULL," ");
-			result = __key_value_get(key_value,tmp);
-			printf("get key:%s,value:%s...\n",tmp,result);
-		}
-		if(strcmp(L(word),"write")==0)
-		{
-			key = strtok(NULL," ");
-			value = strtok(NULL," ");
-			__key_value_insert(key_value,key,value);
-
-			/*i = atoi(strtok(NULL," "));
-			write(i,strtok(NULL," "));*/
-		}
-		if(strcmp(L(word),"dump")==0){
-			__key_value_dump();
-		}
-		if(strcmp(L(word),"recvr")==0){
-			__recover(key_value);
-		}
-	}
+	
 
 
 	//struct lock_free_queue *file_write_queue = new_lock_free_queue();
