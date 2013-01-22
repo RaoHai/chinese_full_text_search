@@ -76,13 +76,13 @@ struct __key_value_node*  __key_value_init()
 		//struct __key_value_node * k_v =   (struct __key_value_node*) malloc (KEY_VALUE_SIZE*sizeof(struct __key_value_node));
 		//struct __key_value_node * k_v = (struct __key_value_node*) malloc (sizeof(struct __key_value_node));
 		//if (k_v) memset(k_v,0,KEY_VALUE_SIZE*sizeof(struct __key_value_node));
-
-		__recover(k_v);
+		 k_v->size = KEY_VALUE_SIZE;
+		//__recover(k_v);
 		return k_v;
 	}
 
 }
-int __key_value_insert(struct __key_value_node* key_value,const char* key,char * value)
+struct __key_value_node*  __key_value_insert(struct __key_value_node* key_value,const char* key,char * value)
 {
 	//TOFIX: 在修改数据时仍会插入新节点
 	//TOFIX: 字符串太长的话strcmp会出问题
@@ -116,21 +116,49 @@ int __key_value_insert(struct __key_value_node* key_value,const char* key,char *
 		printf("rewrite\n");
 		//nextpos = iter->next->pos;
 	}
-	if(iter->pos && iter->pos > KEY_VALUE_SIZE) filepos = iter->pos;
+	//if(iter->pos && iter->pos > KEY_VALUE_SIZE) filepos = iter->pos;
+	if(!iter->lock){
+
+		iter->lock = 1;
+		free(iter->value);
+		iter->value = (char*)malloc(value_len);
+		memset(iter->value,0,value_len);
+		//malloc_and_copy(value);
+		strcpy(iter->value,value);
+		free(iter->key);
+		iter->key =(char*)malloc(key_len); //malloc_and_copy((char*)key);
+		memset(iter->key,0,key_len);
+		strcpy(iter->key,key);
+		
+
+		iter->lock = 0;
 	
-	iter->value = (char*)malloc(value_len);
-	memset(iter->value,0,value_len);
-	//malloc_and_copy(value);
-	strcpy(iter->value,value);
-	iter->key =(char*)malloc(key_len); //malloc_and_copy((char*)key);
-	memset(iter->key,0,key_len);
-	strcpy(iter->key,key);
+	}
 	//if(filepos>KEY_VALUE_SIZE) printf("\n %s -> %s \n",key,value);
 
 	//write(filepos,iter->key,value,nextpos);//*/
 
-	return 0;
+	return iter;
 
+}
+struct __key_value_node* __key_value_get_node(struct __key_value_node* key_value,const char* key){
+	int hashed = hash((char*)key);
+	struct __key_value_node *iter;
+	//char * callback_value = (char*) malloc ( sizeof(char)*10);
+	long filepos = (long)hashed;
+	struct __key_value_node *_temp_k_v = (struct __key_value_node *)malloc(sizeof(struct __key_value_node));
+	//printf("search key:%s(hash:%d),-->%s\n",key,hashed,key_value[hashed].key);
+	if(key_value[hashed].key && strcmp(key_value[hashed].key,key)==0) return &(key_value[hashed]);
+	iter = key_value[hashed].next;
+	while(iter&&iter->next!=NULL)
+	{
+		if(iter->key && strcmp(iter->key,key)==0) return iter;
+		iter = iter->next;
+	}
+	//memset(callback_value,0,sizeof(char)*10);
+	//read(hashed,callback_value);
+	//return callback_value;
+	return NULL;
 }
 char* __key_value_get(struct __key_value_node* key_value,const char* key)
 {
@@ -161,7 +189,7 @@ struct __key_value_node* get_from_pool(int size)
 	k_v_return = k_v_pool->pt;
 	k_v_pool->pt += size;
 	k_v_pool->water_deep+=size;
-	if(k_v_pool->water_deep>KEY_VALUE_SIZE) k_v_return->pos = k_v_pool->water_deep;
+//	if(k_v_pool->water_deep>KEY_VALUE_SIZE) k_v_return->pos = k_v_pool->water_deep;
 	//printf("get mem from pool:%d,water_deep:%d;\n",size,k_v_pool->water_deep);
 	return k_v_return;
 }

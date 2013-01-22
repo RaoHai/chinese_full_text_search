@@ -23,6 +23,7 @@
 #define inline __inline
 
 #define  KEY_VALUE_SIZE  2048				//哈希表的表头尺寸
+#define  MAX_KEY_VALUE_SIZE 2048
 #define  NO_VALUE "k_v_no_value_saved"		
 #define  KEY_VALUE_MUTIPLUS 10
 #define  MAX_NUM_OF_POOL 100				//内存池数组的最大值
@@ -56,10 +57,13 @@ char* malloc_and_copy(char* source);
 struct __key_value_node
 {
 	struct __key_value_node * next;
-	int		pos;
+	struct __key_value_node * child;
+	int		lock;
+	int		size;
 	char*	key;
 	char*	value;
 };
+
 struct __key_value_node* key_value;
 struct _k_v_pool{
 	struct __key_value_node* pt;//当前的指针
@@ -74,9 +78,9 @@ struct _k_v_pool{
 unsigned int hash( char *str);
 
 struct __key_value_node* __key_value_init();
-int __key_value_insert( struct __key_value_node* key_value,const char* key,char * value);
+struct __key_value_node* __key_value_insert( struct __key_value_node* key_value,const char* key,char * value);
 char* __key_value_get( struct __key_value_node* key_value,const char* key);
-
+struct __key_value_node* __key_value_get_node(struct __key_value_node* key_value,const char* key);
 void* command_parser(char* command);
 
 void _dump_proc(struct __key_value_node* k_v);		 //这是子进程。。

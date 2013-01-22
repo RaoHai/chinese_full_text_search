@@ -77,21 +77,21 @@
     <ClCompile Include="cJSON.c" />
     <ClCompile Include="cstlib.c" />
     <ClCompile Include="except.c" />
-    <ClCompile Include="file_service_thread.c" />
     <ClCompile Include="keyvalue.c" />
     <ClCompile Include="key_value_tcp.c" />
     <ClCompile Include="lock_free_queue.c" />
     <ClCompile Include="Test.c" />
+    <ClCompile Include="trie-tree.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allocate.h" />
     <ClInclude Include="cJSON.h" />
     <ClInclude Include="cstlib.h" />
     <ClInclude Include="except.h" />
-    <ClInclude Include="file_service_thread.h" />
     <ClInclude Include="keyvalue.h" />
     <ClInclude Include="key_value_tcp.h" />
     <ClInclude Include="lock_free_queue.h" />
+    <ClInclude Include="trie_tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

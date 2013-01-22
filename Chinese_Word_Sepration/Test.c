@@ -9,7 +9,7 @@
 #include "cstlib.h"
 #include "key_value_tcp.h"
 #include "keyvalue.h"
-
+#include "trie_tree.h"
 
 #define SIZE_ARR 1024
 
@@ -41,132 +41,48 @@ void key_value_test();
 
 int main(){
 	
-
-
-	unsigned pid;
-	int i;
-	//char * callback_value = (char*) malloc ( sizeof(char*));
-	//char * callback_value = (char*)sub_allocate(sizeof(char*));
-	char * callback_value = ALLOC(char*,sizeof(char*));
-	int count=0;
-	//char * command = (char*) malloc (SIZE_ARR * sizeof(char*));
-	char * command = (char*)sub_allocate(SIZE_ARR * sizeof(char*));
-	
-
-
-	
-	char* s1,* s2;
-	int error=0;
-	char *out;
-	cJSON *root;
-	root=cJSON_CreateString("hello");
-	out=cJSON_Print(root);
-	printf("%s\n",out);
-
+	/*
 	key_value=__key_value_init();
 	tcp_start_up();
-	
-	//__key_value_insert(key_value,"Hello","World");
-	//result = __key_value_get(key_value,"Hello");
-	//printf("get key:%s,value:%s\n","Hello",result);
-	
-	
-	//if(init_file_service())
-	//	printf("init successed;\n");
-	
-	/*
-	for(i=0;i<10000;i++)
-	{
-		
-		//s1 = rand_str(5);
-		//s2 = rand_str(5);
-		s1 = (char*)sub_allocate(10);
-		s2 = (char*)sub_allocate(10);
-		itoa(i,s1,10);
-		itoa(i,s2,10);
-		//printf("creating key:%s,value:%s...\n",s1,s2);
-		__key_value_insert(key_value,s1,s2);
-		 result = __key_value_get(key_value,s1);
-		//printf("get key:%s,value:%s...\n",s1,result);
-		if(strcmp(result,s2)!=0) error++;
-	}
-
-	
-	printf("error count:%d\n",error);
-	// */
-	
-
-
-	//struct lock_free_queue *file_write_queue = new_lock_free_queue();
-	/* = (struct lock_free_queue *)malloc(sizeof(struct lock_free_queue *));
-	memset(file_write_queue,0,sizeof(struct lock_free_queue *));
-	file_write_queue->front = file_write_queue->tail=NULL;
 	*/
-	//_beginthreadex(NULL,0, (unsigned (__stdcall *) (void *))thread_proc,(void *)file_write_queue,0,&pid);
-	
-	//trace_queue();
+	Trie  temp;
+	char * retval;
+	char * cnw = "软件工程";
+	Trie * root = create_root_trie();
+	Trie * cur ;
+	Trie * child;
+
 	/*
-	struct __key_value_node* key_value=__key_value_init();
-	char* result;
-	int error=0;
-	int i;
-	clock_t start; clock_t end;
-	char* s1,* s2;
-	char *s;
+	root_insert(root,"软","0");
+	cur = get_root_trie_by_key(root,"软");
 
+	child = create_child_trie("件","1");
+
+	child = trie_add_child(&child,"体","1");
+
+	trie_insert(&cur,child);
 	
+	cur = get_child_trie_by_key(cur->child,"体");
+	child  =  create_chil d_trie("件","工");
+	trie_insert(&cur,child);*/
+	trie_save(root,"软件","0.03");
+	trie_save(root,"软件工程","0.025");
+	trie_save(root,"软件开发","no data");
 
+	trie_get(root,"软件工程");
+	//trie_save(root,"软件设计");
+	//trie_print(cur);
+	
+	
+	
+	/*
+	retval = trie_search(root,"爱");
 
-	__key_value_insert(key_value,"Hello","World");
-	result = __key_value_get(key_value,"Hello");
-	printf("get key:%s,value:%s...\n","Hello",result);
+	printf("search \"软\":%s\n",retval);
 	*/
-	
-	
-	
-	/*
-	start = clock();
-
-	for(i=0;i<100;i++)
-	{
-		
-		s1 = rand_str(5);
-		s2 = rand_str(5);
-		
-		//printf("creating key:%s,value:%s...\n",s1,s2);
-		__key_value_insert(key_value,s1,s2);
-		 result = (char*)__key_value_get(key_value,s1);
-		//printf("get key:%s,value:%s...\n",s1,result);
-		if(result!=s2) error++;
-	}
-	end = clock();
-	printf("1,000,000times save and reaload costs:%f\n", (end - start)/(float)CLK_TCK);
-	printf("error count:%d\n",error);
-	*/
-	/*
-	_mem_pool_trace();
-
-	printf("init tcp server...\n");
-	_tcp_int_and_listen(80,tcp_recv_callback);
-	*/
-	
-	/*
- unsigned pid;
- int count=0;
-	char * command = (char*) malloc (SIZE_ARR * sizeof(char*));
- while(count<5)
- {
-	  _beginthreadex(NULL,0, (unsigned (__stdcall *) (void *))thread_proc,(void *)count,0,&pid);
-	  Sleep( 10);
-	  printf("%d\n",pid);
-	  count++;
- }
- */
-
+	getchar();
 
 	
-	
-
 }
 
 void key_value_test()
