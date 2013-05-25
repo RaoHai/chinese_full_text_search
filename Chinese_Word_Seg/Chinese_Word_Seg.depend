@@ -1,0 +1,307 @@
+# depslib dependency file v1.0
+1354940193 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/allocate.c
+	"allocate.h"
+
+1353639873 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/allocate.h
+	<stdlib.h>
+	<memory.h>
+	<stdio.h>
+
+1318235568 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/cJSON.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1359084627 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/cJSON.h
+
+1364209743 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/cstlib.c
+	"cstlib.h"
+
+1364209739 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/cstlib.h
+	<stdlib.h>
+	<stdio.h>
+	<memory.h>
+	<ctype.h>
+	<stdarg.h>
+
+1354611357 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/except.c
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+	"except.h"
+
+1354611421 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/except.h
+	<setjmp.h>
+
+1364209762 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/Test.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"cstlib.h"
+	"event.h"
+	"protocol.h"
+
+1361089573 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/keyvalue.h
+	<stdio.h>
+	<memory.h>
+	<assert.h>
+	<string.h>
+	"allocate.c"
+	"cstlib.h"
+	"cJSON.h"
+
+1354940193 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/allocate.c
+	"allocate.h"
+
+1364199601 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/trie_tree.h
+	"keyvalue.h"
+	"cstl/list.h"
+	"cstl/map.h"
+	"simple_json.h"
+	<pthread.h>
+
+1271505288 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/cstl/list.h
+	<stdlib.h>
+	"common.h"
+
+1271505288 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/cstl/common.h
+	<assert.h>
+
+1271505288 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/cstl/map.h
+	<stdlib.h>
+	"common.h"
+	"rbtree.h"
+
+1271505288 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/cstl/rbtree.h
+	<stdlib.h>
+	"common.h"
+
+1359288925 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/file_service_thread.c
+	"file_service_thread.h"
+	"keyvalue.h"
+
+1352453785 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/file_service_thread.h
+	"lock_free_queue.h"
+
+1359288937 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/lock_free_queue.h
+	<stdio.h>
+
+1364549970 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/keyvalue.c
+	"keyvalue.h"
+
+1353295341 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/lock_free_queue.c
+	"lock_free_queue.h"
+
+1366468555 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/trie-tree.c
+	"trie_tree.h"
+	"cJSON.h"
+	<iconv.h>
+
+1359345986 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/key_value_tcp.h
+	<event2/listener.h>
+	<event2/bufferevent.h>
+	<event2/buffer.h>
+	<arpa/inet.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<errno.h>
+	"trie_tree.h"
+	"libevent/event2/buffer.h"
+	"libevent/event2/bufferevent.h"
+	"libevent/event2/listener.h"
+
+1359281782 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/libevent/event2/buffer.h
+	<event2/event-config.h>
+	<stdarg.h>
+	<sys/types.h>
+	<sys/uio.h>
+	<event2/util.h>
+
+1319638570 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/libevent/event2/bufferevent.h
+	<event2/event-config.h>
+	<sys/types.h>
+	<sys/time.h>
+	<event2/util.h>
+
+1319638570 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/libevent/event2/listener.h
+	<event2/event.h>
+
+1359291292 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/key_value_tcp.c
+	"key_value_tcp.h"
+
+1361606013 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/event.c
+	"event.h"
+
+1361587145 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/event.h
+	<sys/socket.h>
+	<sys/epoll.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdio.h>
+	<errno.h>
+	<string.h>
+
+1361251035 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/protocol.h
+	"trie_tree.h"
+
+1361251927 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/protocol.c
+	"protocol.h"
+	"cstl/list.h"
+	"cstl/map.h"
+
+1361086311 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/trie-tree.c
+	"trie_tree.h"
+
+1361591512 /home/landfrom/chinese_word_linux/Chinese_Word_Seg/simple_json.h
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+
+1361591982 source:/home/landfrom/chinese_word_linux/Chinese_Word_Seg/simple_json.c
+	"simple_json.h"
+
+1364209762 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/Test.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"cstlib.h"
+	"event.h"
+	"protocol.h"
+
+1364209739 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/cstlib.h
+	<stdlib.h>
+	<stdio.h>
+	<memory.h>
+	<ctype.h>
+	<stdarg.h>
+
+1361587145 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/event.h
+	<sys/socket.h>
+	<sys/epoll.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdio.h>
+	<errno.h>
+	<string.h>
+
+1361251035 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/protocol.h
+	"trie_tree.h"
+
+1364199601 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/trie_tree.h
+	"keyvalue.h"
+	"cstl/list.h"
+	"cstl/map.h"
+	"simple_json.h"
+	<pthread.h>
+
+1361089573 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/keyvalue.h
+	<stdio.h>
+	<memory.h>
+	<assert.h>
+	<string.h>
+	"allocate.c"
+	"cstlib.h"
+	"cJSON.h"
+
+1354940193 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/allocate.c
+	"allocate.h"
+
+1353639873 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/allocate.h
+	<stdlib.h>
+	<memory.h>
+	<stdio.h>
+
+1359084627 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/cJSON.h
+
+1271505288 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/cstl/list.h
+	<stdlib.h>
+	"common.h"
+
+1271505288 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/cstl/common.h
+	<assert.h>
+
+1271505288 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/cstl/map.h
+	<stdlib.h>
+	"common.h"
+	"rbtree.h"
+
+1271505288 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/cstl/rbtree.h
+	<stdlib.h>
+	"common.h"
+
+1361591512 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/simple_json.h
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+
+1354940193 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/allocate.c
+	"allocate.h"
+
+1318235568 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/cJSON.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1364209743 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/cstlib.c
+	"cstlib.h"
+
+1361606013 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/event.c
+	"event.h"
+
+1354611357 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/except.c
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+	"except.h"
+
+1354611421 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/except.h
+	<setjmp.h>
+
+1359288925 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/file_service_thread.c
+	"file_service_thread.h"
+	"keyvalue.h"
+
+1352453785 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/file_service_thread.h
+	"lock_free_queue.h"
+
+1359288937 /home/landfrom/chinese_word_seg/Chinese_Word_Seg/lock_free_queue.h
+	<stdio.h>
+
+1364549970 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/keyvalue.c
+	"keyvalue.h"
+
+1353295341 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/lock_free_queue.c
+	"lock_free_queue.h"
+
+1361251927 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/protocol.c
+	"protocol.h"
+	"cstl/list.h"
+	"cstl/map.h"
+
+1361591982 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/simple_json.c
+	"simple_json.h"
+
+1366468555 source:/home/landfrom/chinese_word_seg/Chinese_Word_Seg/trie-tree.c
+	"trie_tree.h"
+	"cJSON.h"
+	<iconv.h>
+

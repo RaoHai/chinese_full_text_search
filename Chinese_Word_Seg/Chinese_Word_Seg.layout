@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="Test.c" open="1" top="0" tabpos="1">
+		<Cursor position="176" topLine="5" />
+	</File>
+	<File name="allocate.c" open="1" top="0" tabpos="6">
+		<Cursor position="269" topLine="6" />
+	</File>
+	<File name="allocate.h" open="0" top="0" tabpos="5">
+		<Cursor position="1481" topLine="36" />
+	</File>
+	<File name="event.c" open="1" top="0" tabpos="5">
+		<Cursor position="215" topLine="7" />
+	</File>
+	<File name="file_service_thread.c" open="0" top="0" tabpos="0">
+		<Cursor position="157" topLine="0" />
+	</File>
+	<File name="keyvalue.c" open="1" top="0" tabpos="2">
+		<Cursor position="6105" topLine="207" />
+	</File>
+	<File name="lock_free_queue.h" open="0" top="0" tabpos="0">
+		<Cursor position="183" topLine="0" />
+	</File>
+	<File name="trie-tree.c" open="1" top="1" tabpos="3">
+		<Cursor position="579" topLine="15" />
+	</File>
+	<File name="trie_tree.h" open="1" top="0" tabpos="4">
+		<Cursor position="88" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>

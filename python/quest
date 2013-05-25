@@ -1,0 +1,41 @@
+import sys
+import socket
+import re
+
+p = re.compile('read|write|dump|recvr')
+print("Welcome to CWS client......")
+print("connecting to 127.0.0.1:22222")
+address = ('127.0.0.1',22222)
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(address)
+print("successed!")
+filehandle = open('Mandarin1.fre','r', encoding='UTF-8')
+count = 0
+while True:
+    rdline = filehandle.readline()
+    if(rdline==' '):
+        break
+    strlist = rdline.split()
+    if(len(strlist)<2):
+        print(count)
+        print(rdline)
+        continue
+    str = 'read ' + strlist[1]
+    count = count + 1
+    m=p.match(str)
+    while (p.match(str) != None):
+        s.send(bytes(str+'\r\n','gbk'))
+        data = s.recv(512)
+        try:
+            decodeeddata = data.decode('gbk')
+            print(decodeeddata)
+        except Exception:
+            print(data)
+        break
+    else:
+        print("invalid syntax:"+str)
+print(count)
+input()
+s.close()
+
+

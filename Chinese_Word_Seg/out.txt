@@ -1,0 +1,62 @@
+trie_get:hello
+get_child_trie_by_key:key:e,e
+-----CUR CHILD----
+e
+key:e
+value:0
+size:1
+child size:1
+get_child_trie_by_key:key:l,l
+-----CUR CHILD----
+l
+key:l
+value:0
+size:1
+child size:1
+get_child_trie_by_key:key:l,l
+-----CUR CHILD----
+l
+key:l
+value:0
+size:1
+child size:1
+get_child_trie_by_key:key:o,o
+-----CUR CHILD----
+o
+key:o
+value:world
+size:1
+value get hello,world
+child size:1
+-----NULL CHILD----
+trie_get:hello
+get_child_trie_by_key:key:e,e
+-----CUR CHILD----
+e
+key:e
+value:0
+size:1
+child size:1
+get_child_trie_by_key:key:l,l
+-----CUR CHILD----
+l
+key:l
+value:0
+size:1
+child size:1
+get_child_trie_by_key:key:l,l
+-----CUR CHILD----
+l
+key:l
+value:0
+size:1
+child size:1
+get_child_trie_by_key:key:o,o
+-----CUR CHILD----
+o
+key:o
+value:world
+size:1
+value get hello,world
+child size:1
+-----NULL CHILD----

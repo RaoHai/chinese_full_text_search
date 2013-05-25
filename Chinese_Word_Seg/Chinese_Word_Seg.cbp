@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Chinese_Word_Seg" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Chinese_Word_Seg" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../Chinese_Word_Seg" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="pthread" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Chinese_Word_Seg" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="allocate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="allocate.h" />
+		<Unit filename="cJSON.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cJSON.h" />
+		<Unit filename="cstl/algorithm.h" />
+		<Unit filename="cstl/common.h" />
+		<Unit filename="cstl/deque.h" />
+		<Unit filename="cstl/hashtable.h" />
+		<Unit filename="cstl/list.h" />
+		<Unit filename="cstl/map.h" />
+		<Unit filename="cstl/rbtree.h" />
+		<Unit filename="cstl/ring.h" />
+		<Unit filename="cstl/set.h" />
+		<Unit filename="cstl/string.h" />
+		<Unit filename="cstl/unordered_map.h" />
+		<Unit filename="cstl/unordered_set.h" />
+		<Unit filename="cstl/vector.h" />
+		<Unit filename="cstlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cstlib.h" />
+		<Unit filename="event.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="event.h" />
+		<Unit filename="except.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="except.h" />
+		<Unit filename="file_service_thread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="file_service_thread.h" />
+		<Unit filename="keyvalue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="keyvalue.h" />
+		<Unit filename="lock_free_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lock_free_queue.h" />
+		<Unit filename="protocol.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="protocol.h" />
+		<Unit filename="simple_json.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="simple_json.h" />
+		<Unit filename="trie-tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="trie_tree.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

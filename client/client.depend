@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1359296131 source:/home/landfrom/chinese_word_linux/client/main.c
+	<sys/socket.h>
+	<sys/types.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<unistd.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+

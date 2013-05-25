@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<title>Search</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+input{
+	border: 0;
+	padding: 0;
+	width: 405px;
+	height: 22px;
+	font: 16px/22px arial;
+	margin: 5px 0 0 7px;
+	background: #fff;
+	outline: 0;
+	-webkit-appearance: none;
+}
+button{
+	width: 95px;
+	height: 32px;
+	padding-top: 2px	9;
+	font-size: 14px;
+}
+.wrap{
+	width: 418px;
+	height: 30px;
+	display: inline-block;
+	margin-right: 5px;
+	border: 1px solid #b6b6b6;
+	border-color: #9a9a9a #cdcdcd #cdcdcd #9a9a9a;
+	vertical-align: top;
+}
+</style>
+<body>
+	<center>
+		<form action='/'>
+			<h1>Search</h1>
+			<span class='wrap'>
+				<input name='query'>
+			</span>
+			<button type='submit'>Search</button>
+		</form>
+		<ul>
+			{$result}
+		</ul>
+	</center>
+	this is all result
+</body>
+</html>
